@@ -21,9 +21,9 @@ startdata={
 base_dir = os.getcwd()
 print(base_dir)
 print(os.listdir(base_dir))
-jsonusernameandpassword = os.path.join(base_dir, 'database', 'usernameandpassword.json')
-jsonuserdata = os.path.join(base_dir, 'database', 'userdata.json')
-jsonchatdatabase = os.path.join(base_dir, 'database', 'chatdatabase.json')
+jsonusernameandpassword = os.path.join(base_dir, 'server','database', 'usernameandpassword.json')
+jsonuserdata = os.path.join(base_dir, 'server','database', 'userdata.json')
+jsonchatdatabase = os.path.join(base_dir, 'server','database', 'chatdatabase.json')
 def checks(password:str):
     d=[]
     c=True

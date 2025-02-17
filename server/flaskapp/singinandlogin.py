@@ -17,7 +17,8 @@ startdata={
         "inboxs": [],
         "invites": []
     }
-base_dir = os.path.abspath(os.path.dirname(__file__))
+#base_dir = os.path.abspath(os.path.dirname(__file__))
+base_dir = os.getcwd()
 jsonusernameandpassword = os.path.join(base_dir, 'database', 'usernameandpassword.json')
 jsonuserdata = os.path.join(base_dir, 'database', 'userdata.json')
 jsonchatdatabase = os.path.join(base_dir, 'database', 'chatdatabase.json')

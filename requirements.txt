@@ -1,6 +1,4 @@
 flask
 flask-cors
 gunicorn
-json
 numpy
-string

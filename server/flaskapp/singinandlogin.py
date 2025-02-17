@@ -3,6 +3,7 @@ from flask_cors import CORS
 import json
 import numpy as np
 import string
+import os
 app = Flask(__name__)
 CORS(app, origins="*")
 
@@ -16,6 +17,10 @@ startdata={
         "inboxs": [],
         "invites": []
     }
+base_dir = os.path.abspath(os.path.dirname(__file__))
+jsonusernameandpassword = os.path.join(base_dir, 'database', 'usernameandpassword.json')
+jsonusernameandpassword = os.path.join(base_dir, 'database', 'userdata.json')
+jsonusernameandpassword = os.path.join(base_dir, 'database', 'chatdatabase.json')
 def checks(password:str):
     d=[]
     c=True

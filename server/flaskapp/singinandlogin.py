@@ -19,8 +19,8 @@ startdata={
     }
 base_dir = os.path.abspath(os.path.dirname(__file__))
 jsonusernameandpassword = os.path.join(base_dir, 'database', 'usernameandpassword.json')
-jsonusernameandpassword = os.path.join(base_dir, 'database', 'userdata.json')
-jsonusernameandpassword = os.path.join(base_dir, 'database', 'chatdatabase.json')
+jsonuserdata = os.path.join(base_dir, 'database', 'userdata.json')
+jsonchatdatabase = os.path.join(base_dir, 'database', 'chatdatabase.json')
 def checks(password:str):
     d=[]
     c=True
@@ -53,18 +53,18 @@ def indexd():
         data = request.json
         username = data["username"]
         password = data["password"]
-        with open(r"server\database\userdata.json", "r") as f:
+        with open(jsonuserdata, "r") as f:
             userdata = json.load(f)
-        with open(r"server\database\usernameandpassword.json", "r") as f:
+        with open(jsonusernameandpassword, "r") as f:
             usernameandpassword = json.load(f)
         #canuse,why = checks(data["password"])
         canuse,why = True,[]
         if canuse and not username in usernameandpassword or len(username.split(" ")) > 1:
             usernameandpassword[username] = password
             userdata[username] = startdata
-            with open(r"server\database\userdata.json", "w") as f:
+            with open(jsonuserdata, "w") as f:
                 json.dump(userdata,f,indent=4)
-            with open(r"server\database\usernameandpassword.json", "w") as f:
+            with open(jsonusernameandpassword, "w") as f:
                 json.dump(usernameandpassword, f, indent=4)
             return jsonify({"message":"ok","data":userdata[username],"name":f"{username}"})
         else:
@@ -79,9 +79,9 @@ def index1():
         data = request.json
         username = data["username"]
         password = data["password"]
-        with open(r"server\database\usernameandpassword.json", "r") as f:
+        with open(jsonusernameandpassword, "r") as f:
             usernameandpassword = json.load(f)
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdatas = json.load(f)
         if username in usernameandpassword and usernameandpassword[username] == password:
 
@@ -94,15 +94,15 @@ def index():
         data = request.json
         username = data["username"]
         myname = data["myname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
-        with open(r"server\database\usernameandpassword.json","r") as f:
+        with open(jsonusernameandpassword,"r") as f:
             usernameandpassword = json.load(f)
         if username in usernameandpassword and myname not in userdata[username]["inboxs"] and username not in userdata[myname]["invites"] and username != myname:
             userdata[username]["inboxs"].append(myname)
             userdata[myname]["invites"].append(username)
             print(userdata[myname]["invites"],userdata[username]["inboxs"])
-            with open(r"server\database\userdata.json","w") as f:
+            with open(jsonuserdata,"w") as f:
                 json.dump(userdata,f,indent=4)
             return jsonify({"message":"Friend request sent successfully"}),200
         elif username in usernameandpassword and  myname in userdata[username]["inboxs"] and username in userdata[myname]["invites"]:
@@ -114,7 +114,7 @@ def indexs():
     if request.method == "POST":
         data = request.json
         myname = data["myname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         if myname in userdata:
             return jsonify({"inboxs":userdata[myname]["inboxs"], "m":"ok"}),200
@@ -123,7 +123,7 @@ def apiv7():
     if request.method == 'POST':
         data = request.json
         myname = data["myname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f) 
         return jsonify({"inboxs":userdata[myname]["inboxs"]}),200
 @app.route('/api/v6', methods=['GET', 'POST'])
@@ -132,7 +132,7 @@ def apiv6():
         data = request.json
         myname = data["host"]
         inboxsname = data["inboxs"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         print(userdata[myname])
         try:
@@ -142,7 +142,7 @@ def apiv6():
             userdata[inboxsname]["inboxs"].remove(myname)
         except:
             pass
-        with open(r"server\database\userdata.json","w") as f:
+        with open(jsonuserdata,"w") as f:
             json.dump(userdata,f,indent=4)
         return jsonify({"as":"Da"}),200
     else:
@@ -153,7 +153,7 @@ def apiv5():
         data = request.json
         myname = data["host"]
         inboxsname = data["inboxs"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         print(userdata[myname])
         try:
@@ -165,7 +165,7 @@ def apiv5():
             userdata[inboxsname]["inboxs"].remove(myname)
         except:
             pass
-        with open(r"server\database\userdata.json","w") as f:
+        with open(jsonuserdata,"w") as f:
             json.dump(userdata,f,indent=4)
         return jsonify({"as":"Da"}),200
     else:
@@ -176,7 +176,7 @@ def apiv8():
     if request.method == "POST":
         data = request.json
         myname = data["myname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         return jsonify({"myinvites":userdata[myname]["invites"]}),200
 @app.route('/api/v9', methods=['GET', 'POST'])
@@ -184,7 +184,7 @@ def apiv9():
     if request.method == "POST":
         data = request.json
         myname = data["myname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         return jsonify({"myfreinds":userdata[myname]["freinds"]}),200
 ##########################
@@ -194,7 +194,7 @@ def ipv10():
         data = request.json
         myname = data["myname"]
         friendname = data["friendname"]
-        with open(r"server\database\userdata.json","r") as f:
+        with open(jsonuserdata,"r") as f:
             userdata = json.load(f)
         userdatamyname = userdata[myname]
         userdatafriendname = userdata[friendname]
@@ -206,19 +206,19 @@ def ipv10():
                 encode = ''.join(np.random.choice(list(string.ascii_letters), 10))
                 chatme.append(f"{encode}")
                 chatmef.append(f"{encode}")
-                with open(r"server\database\chatdatabase.json","r") as f:
+                with open(jsonchatdatabase,"r") as f:
                     chatserver = json.load(f)
                 chatserver.update({f"{encode}":{
                         "userinchat":[f"{myname}",f"{friendname}"],
                         "messageinchat":[]
                     }})
-                with open(r"server\database\chatdatabase.json","w") as f:
+                with open(jsonchatdatabase,"w") as f:
                     json.dump(chatserver,f,indent=4)
             chatencode = list(set(chatme) & set(chatmef))
             if len(chatencode) >= 1:
-                with open(r"server\database\userdata.json","w") as f:
+                with open(jsonuserdata,"w") as f:
                     json.dump(userdata,f,indent=4)
-                with open(r"server\database\chatdatabase.json","r") as f:
+                with open(jsonchatdatabase,"r") as f:
                     chatserver = json.load(f)
                 chatdata = chatserver[chatencode[0]]
                 if myname in chatdata["userinchat"] and friendname in chatdata["userinchat"]:
@@ -239,7 +239,7 @@ def ipv11():
         chatid = data["chatid"]
         myname = data["myname"]
         message = data["message"]
-        with open(r"server\database\chatdatabase.json","r") as f:
+        with open(jsonchatdatabase,"r") as f:
             chatserver = json.load(f)
         if chatid in chatserver:
             chatdata = chatserver[chatid]
@@ -249,7 +249,7 @@ def ipv11():
                     "message": message,
                 }
                 chatdata["messageinchat"].append(structure)
-                with open(r"server\database\chatdatabase.json","w") as f:
+                with open(jsonchatdatabase,"w") as f:
                     json.dump(chatserver,f,indent=4)
                 return jsonify({"message":"Message sent successfully"}),200
     return jsonify({"As":"SAD"})
@@ -259,7 +259,7 @@ def ipv12():
         data = request.json
         chatid = data["chatid"]
         chats = data["chat"]
-        with open(r"server\database\chatdatabase.json","r") as f:
+        with open(jsonchatdatabase,"r") as f:
             chatdata = json.load(f)
         chat = chatdata[chatid]["messageinchat"]
         if len(chats) != len(chat):

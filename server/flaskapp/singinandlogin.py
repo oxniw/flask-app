@@ -262,5 +262,5 @@ def ipv12():
             return jsonify({"chat":chat})
         return jsonify({"OK":"OK"})
 #################################
-if __name__ == "__main__":
-    app.run()
+#if __name__ == "__main__":
+#    app.run()

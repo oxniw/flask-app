@@ -261,6 +261,12 @@ def ipv12():
 
             return jsonify({"chat":chat})
         return jsonify({"OK":"OK"})
+@app.route("/")  # Root route
+def home():
+    return "Flask App is Running!", 200
+
+if __name__ == "__main__":
+    app.run()
 #################################
 #if __name__ == "__main__":
 #    app.run()

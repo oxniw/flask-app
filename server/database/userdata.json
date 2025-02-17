@@ -1,0 +1,98 @@
+{
+    "a": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [
+            "aa",
+            "add"
+        ],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": [
+            "eIDbpobdWB",
+            "JCEeAquyrE"
+        ]
+    },
+    "add": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [
+            "a"
+        ],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": [
+            "JCEeAquyrE"
+        ]
+    },
+    "aa": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [
+            "a",
+            "aaaa"
+        ],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": [
+            "eIDbpobdWB",
+            "MSRjAIRHqi"
+        ]
+    },
+    "aaa": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": []
+    },
+    "aaaa": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [
+            "aa"
+        ],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": [
+            "MSRjAIRHqi"
+        ]
+    },
+    "aaaaa": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": [],
+        "inboxs": [],
+        "invites": [],
+        "chatlist": []
+    },
+    "asdas": {
+        "sources": {
+            "money": 100
+        },
+        "chatserver": {},
+        "chat": {},
+        "freinds": {},
+        "inboxs": [],
+        "invites": []
+    }
+}

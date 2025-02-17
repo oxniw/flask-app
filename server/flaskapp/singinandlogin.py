@@ -21,6 +21,7 @@ startdata={
 base_dir = os.getcwd()
 print(base_dir)
 print(os.listdir(base_dir))
+print(os.listdir(os.path.join(base_dir,'server','database')))
 jsonusernameandpassword = os.path.join(base_dir, 'server','database', 'usernameandpassword.json')
 jsonuserdata = os.path.join(base_dir, 'server','database', 'userdata.json')
 jsonchatdatabase = os.path.join(base_dir, 'server','database', 'chatdatabase.json')
